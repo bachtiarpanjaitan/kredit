@@ -3,15 +3,16 @@
 @section('content')
 	<div class="col-md-12">
 		<div class="btn-group">
-	        <button type="button" class="btn btn-success">Tambah</button>
-	        <button type="button" class="btn btn-danger">Hapus</button>
+	        <a href="{{route('admin.vehicle.add')}}"><button type="button" class="btn btn-success">Tambah</button></a>
+	        <button type="button" class="btn btn-danger btn-delete" data-url="{{route('admin.vehicle.delete')}}">Hapus</button>
 	  	</div>
 	</div>
-  	<div class="row card-body">
+  	<div class="card mt-2">
+  		<div class="row card-body">
         <div class="table-responsive">
         	<table id="data" class="table table-bordered table-hover">
 	        	<thead>
-	        		<th width="10px">No</th>
+	        		<th width="10px">#</th>
 	        		<th>Nama</th>
 	        		<th>Tipe</th>
 	        		<th>Merek</th>
@@ -22,8 +23,8 @@
 	        	<tbody>
 	        		@foreach($vehicles as $key => $v)
 	        			<tr>
-		        			<td>{{$key + 1}}</td>
-		        			<td>{{$v->name}}</td>
+	        				<td><input type="checkbox" name="" class="ck-data" data-id="{{$v->id}}"></td>
+		        			<td><a href="{{route('admin.vehicle.edit',$v->id)}}">{{$v->name}}</a></td>
 		        			<td>{!!convert_master_to_object_2(config('master.type'))[$v->type_id]->value['name']!!}</td>
 		        			<td>{!!convert_master_to_object_2(config('master.brand'))[$v->brand_id]->value['name']!!}</td>
 		        			<td>{{$v->model}}</td>
@@ -35,6 +36,7 @@
 	        </table>
         </div>
     </div>
+  	</div>
 @endsection
 
 @push('script')

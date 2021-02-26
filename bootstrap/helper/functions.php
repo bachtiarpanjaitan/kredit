@@ -34,3 +34,46 @@ function remove_snake_case($string,$toappercase = false){
     }
     return $result;
 }
+
+function json_return_data($data,$state,$message = null,$code = 200)
+{
+    $result = [
+        'status' => $state,
+        'data' => $data,
+        'message' => $message,
+        'code' => $code
+    ];
+    return json_encode($result);
+}
+
+function combobox($source, $field_id, $field_name, $selected=null,$multiple=false)
+{
+    $option = '';
+    foreach($source as $item){
+        if(is_object($item)){
+            if($item->{$field_id} == $selected){
+                if(is_array($field_name)){
+                    $option .= '<option value="'.$item->{$field_id}.'" selected>'.$item->{$field_name[0]}.' - '.$item->{$field_name[1]}.'</option>';
+                }else $option .= '<option value="'.$item->{$field_id}.'" selected>'.$item->{$field_name}.'</option>';
+            }else {
+                if(is_array($field_name)){
+                    $option .= '<option value="'.$item->{$field_id}.'">'.$item->{$field_name[0]}.' - '.$item->{$field_name[1]}.'</option>';
+                }else $option .= '<option value="'.$item->{$field_id}.'">'.$item->{$field_name}.'</option>';
+            } 
+           
+        }elseif(is_array($item)){
+            if($item[$field_id] == $selected){
+                if(is_array($field_name)){
+                    $option .= '<option value="'.$item[$field_id].'" selected>'.$item[$field_name[0]].' - '.$item[$field_name[1]].'</option>';
+                }else $option .= '<option value="'.$item[$field_id].'" selected>'.$item[$field_name].'</option>';
+            }else  {
+                if(is_array($field_name)){
+                    $option .= '<option value="'.$item[$field_id].'">'.$item[$field_name[0]].' - '.$item[$field_name[1]].'</option>';
+                }else $option .= '<option value="'.$item[$field_id].'">'.$item[$field_name].'</option>';
+            }
+           
+        }else continue;
+        
+    }
+    return $option;   
+}

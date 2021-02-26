@@ -15,6 +15,9 @@
   <link rel="stylesheet" href="{{url('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{url('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{url('plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
+  <link rel="stylesheet" href="{{url('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
+  <link rel="stylesheet" href="{{url('plugins/select2/css/select2.min.css')}}">
+  <link rel="stylesheet" href="{{url('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
 
 </head>
 <body class="hold-transition sidebar-mini">
@@ -131,10 +134,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-lock"></i>
+            <a href="{{ url('/admin/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link">
+                <i class="nav-icon fas fa-lock"></i>
               <p>Keluar</p>
             </a>
+            <form id="logout-form" action="{{ url('/admin/logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+            </form>
           </li>
         </ul>
       </nav>
@@ -149,13 +155,13 @@
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-6"></div>
           <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">{{$page['module']}}</a></li>
+            <ol class="breadcrumb float-sm-left">
+              <li class="breadcrumb-item">{{$page['module']}}</li>
               <li class="breadcrumb-item active">{{$page['title']}}</li>
             </ol>
           </div>
+          <div class="col-sm-6"></div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
@@ -198,6 +204,71 @@
 <script src="{{url('plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
 <script src="{{url('plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
 <script src="{{url('plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+
+<script src="{{url('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+<script src="{{url('plugins/select2/js/select2.full.min.js')}}"></script>
+
+<script>
+  var Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000
+    });
+
+  const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+
+  $('.btn-delete').click(function(){
+
+    var ids = [];
+    var url = $(this).data('url');
+    $('.ck-data:checked').each(function(v,i){
+      ids.push(i.dataset.id)
+    })
+
+    var data = {ids: ids, _token: '{{ csrf_token() }}'}
+
+    swalWithBootstrapButtons.fire({
+      title: 'Hapus Data?',
+      text: "Anda yakin hapus data terpilih?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: ' Ya, Hapus Saja!',
+      cancelButtonText: ' Tidak, Terimakasih!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        $.ajax({
+            type        : 'POST', 
+            url         : url, 
+            data        : data, 
+            dataType    : 'json'
+        }).done(function(data) {
+           if(data.code == 200){
+              location.reload();
+           }else{
+              swalWithBootstrapButtons.fire(
+                'Gagal Dihapus!',
+                data.message,
+                'error'
+              )
+           }
+        }).fail(function(data) {
+          
+        });
+        
+      }
+    })
+  });
+
+</script>
 
 @stack('script')
 
