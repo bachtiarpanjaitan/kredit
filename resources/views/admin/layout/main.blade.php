@@ -120,9 +120,17 @@
           <li class="nav-header">MASTER</li>
           <li class="nav-item">
             <a href="{{route('admin.vehicle.list')}}" class="nav-link">
-              <i class="nav-icon far fa-calendar-alt"></i>
+              <i class="nav-icon fa fa-car"></i>
               <p>
                 Kendaraan
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route('admin.customer.list')}}" class="nav-link">
+              <i class="nav-icon far fa-user"></i>
+              <p>
+                Pelanggan
               </p>
             </a>
           </li>
