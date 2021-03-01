@@ -33,7 +33,7 @@
 		        				<td>{{$v->tenor}} Bulan</td>
 		        				<td>{{number_format($v->price),2,'.',','}}</td>
 		        				<td>{!!convert_master_to_object_2(config('master.credit_status'))[$v->status]->value['name']!!}</td>
-		        				<td><a href="#">Detail Angsuran</a></td>
+		        				<td><a href="{{route('admin.credit.detail',$v->id)}}">Detail Angsuran</a></td>
 		        			</tr>
 		        		@endforeach
 		        	</tbody>

@@ -72,5 +72,15 @@ return [
 			'id' => 3,
 			'name' => 'DONE'
 		]
+	],
+	'installment_status' => [
+		'open' => [
+			'id' => 1,
+			'name' => 'OPEN'
+		],
+		'close' => [
+			'id' => 2,
+			'name' => 'CLOSE'
+		]
 	]
 ];

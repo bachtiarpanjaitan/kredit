@@ -75,6 +75,8 @@ Route::group([
     $router->get('add',$controller.'add')->name('add');
     $router->post('save',$controller.'save')->name('save');
     $router->get('edit/{id}',$controller.'edit')->name('edit');
+    $router->get('detail/{id}',$controller.'detail')->name('detail');
+    $router->post('paid',$controller.'paid')->name('paid');
 });
 
 
