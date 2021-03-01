@@ -62,6 +62,15 @@
                             </span>
                         @enderror
 					</div>
+					<div class="form-group">
+						<label for="">Harga Terbaru</label>
+						<input type="number" name="price" id="price" class="form-control" value="{{$vehicle?$vehicle->price:''}}">
+						@error('price')
+                            <span class="small text-danger">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">

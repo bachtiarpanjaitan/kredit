@@ -134,6 +134,15 @@
               </p>
             </a>
           </li>
+          <li class="nav-header">TRANSAKSI</li>
+          <li class="nav-item">
+            <a href="{{route('admin.credit.list')}}" class="nav-link">
+              <i class="nav-icon fa fa-credit-card"></i>
+              <p>
+                Angsuran
+              </p>
+            </a>
+          </li>
           <li class="nav-header">LAIN-LAIN</li>
           <li class="nav-item">
             <a href="#" class="nav-link">
@@ -215,6 +224,7 @@
 
 <script src="{{url('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
 <script src="{{url('plugins/select2/js/select2.full.min.js')}}"></script>
+<script src="{{url('plugins/jquery-mask/jquery.mask.min.js')}}"></script>
 
 <script>
   var Toast = Swal.mixin({
@@ -275,6 +285,8 @@
       }
     })
   });
+
+  $('.money').mask('000.000.000.000.000', {reverse: true});
 
 </script>
 

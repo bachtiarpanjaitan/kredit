@@ -16,7 +16,7 @@ class ProvinceController extends Controller
 
     public function regency(Request $request)
     {
-    	$regencies = Province::with('regencies')->findOrFail($request->id);
+    	$regencies = Province::with('regencies')->where('code',$request->id)->first();
     	return json_return_data($regencies->regencies,'success','');
     }
 }

@@ -48,5 +48,29 @@ return [
 			'id' => 7,
 			'name' => 'Bajaj'
 		]
+	],
+	'interest_type' => [
+		'flat' => [
+			'id' => 1,
+			'name' => 'Flat'
+		],
+		'sliding_rate' => [
+			'id' => 2,
+			'name' => 'Sliding Rate'
+		]
+	],
+	'credit_status' => [
+		'idle' => [
+			'id' => 1,
+			'name' => 'IDLE'
+		],
+		'running' => [
+			'id' => 2,
+			'name' => "RUNNING"
+		],
+		'done' => [
+			'id' => 3,
+			'name' => 'DONE'
+		]
 	]
 ];

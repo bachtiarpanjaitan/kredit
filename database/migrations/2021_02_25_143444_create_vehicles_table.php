@@ -23,6 +23,7 @@ class CreateVehiclesTable extends Migration
             $table->year('year');
             $table->string('color');
             $table->integer('cylinder');
+            $table->double('price',15,2);
             // $table->timestamps();
         });
     }

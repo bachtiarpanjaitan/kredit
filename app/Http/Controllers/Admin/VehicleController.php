@@ -53,6 +53,7 @@ class VehicleController extends Controller
             'year' => 'required|integer',
             'color' => 'required',
             'cylinder' => 'required|integer',
+            'price' => 'required|integer',
         ]);
 
         if ($validations->fails()) {
@@ -76,6 +77,7 @@ class VehicleController extends Controller
             $v->year = $data['year'];
             $v->color = $data['color'];
             $v->cylinder = $data['cylinder'];
+            $v->price = $data['price'];
 
            if( $v->save()){
                 return redirect()->route('admin.vehicle.list');
@@ -115,5 +117,11 @@ class VehicleController extends Controller
         }else{
             return json_return_data(null,null,'Pilih data yang dihapus', 500);
         }
+    }
+
+    public function get(Request $request)
+    {
+        $vehicle = Vehicle::findOrFail($request->id);
+        return json_return_data($vehicle,'success','');
     }
 }

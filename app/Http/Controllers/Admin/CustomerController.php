@@ -136,7 +136,16 @@ class CustomerController extends Controller
     }
 
     public function delete(Request $request){
+        $data = $request->all();
+        if(!empty($data['ids'])){
+            foreach ($data['ids'] as $key => $value) {
+                Customer::findOrFail($value)->delete();
+            }
 
+            return json_return_data(null,null,'Data pelanggan berhasil dihapus');
+        }else{
+            return json_return_data(null,null,'Pilih data yang dihapus', 500);
+        }
     }
 
 }

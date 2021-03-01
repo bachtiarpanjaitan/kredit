@@ -25,7 +25,8 @@ Route::group([
     $router->post('delete',$controller.'delete')->name('delete');
     $router->get('add',$controller.'add')->name('add');
     $router->post('save',$controller.'save')->name('save');
-   	$router->get('edit/{id}',$controller.'edit')->name('edit');
+    $router->get('edit/{id}',$controller.'edit')->name('edit');
+   	$router->get('get',$controller.'get')->name('get');
 });
 
 Route::group([
@@ -62,6 +63,18 @@ Route::group([
 ], function (Router $router) {
     $controller = "Admin\DistrictController@";
     $router->get('district',$controller.'village')->name('get_village');
+});
+
+Route::group([
+    'as' => 'credit.',
+    'prefix' => 'credit'
+], function (Router $router) {
+    $controller = "Admin\CreditController@";
+    $router->get('list',$controller.'list')->name('list');
+    $router->post('delete',$controller.'delete')->name('delete');
+    $router->get('add',$controller.'add')->name('add');
+    $router->post('save',$controller.'save')->name('save');
+    $router->get('edit/{id}',$controller.'edit')->name('edit');
 });
 
 
