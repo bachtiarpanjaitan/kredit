@@ -76,11 +76,15 @@ return [
 	'installment_status' => [
 		'open' => [
 			'id' => 1,
-			'name' => 'OPEN'
+			'name' => 'Belum Lunas'
 		],
 		'close' => [
 			'id' => 2,
-			'name' => 'CLOSE'
+			'name' => 'Lunas'
 		]
-	]
+	],
+	'tenor' => [12,18,24,30,36],
+	'downpayment' => [1000000,2500000,3500000,4000000,5500000,6000000],
+	'default_otr' => 2000000,
+	'default_interest' => 5
 ];

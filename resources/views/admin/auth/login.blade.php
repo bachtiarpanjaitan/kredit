@@ -10,7 +10,7 @@
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-6 control-label">E-Mail Address</label>
+                            <label for="email" class="col-md-6 control-label">E-mail Address</label>
                             <div class="">
                                 <div class="input-group mb-3">
                                   <input type="email" name="email" class="form-control" value="{{old('email')}}" placeholder="Email">
@@ -61,10 +61,6 @@
                                 <button type="submit" class="btn btn-primary">
                                     Login
                                 </button>
-
-                                <a class="btn btn-link" href="{{ url('/admin/password/reset') }}">
-                                    Forgot Your Password?
-                                </a>
                             </div>
                         </div>
                     </form>

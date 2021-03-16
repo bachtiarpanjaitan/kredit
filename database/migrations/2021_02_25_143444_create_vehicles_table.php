@@ -17,6 +17,7 @@ class CreateVehiclesTable extends Migration
             $table->bigIncrements('id');
             $table->tinyInteger('brand_id');
             $table->tinyInteger('type_id');
+            $table->tinyInteger('status')->default(1)->nullable();
             $table->string('code');
             $table->string('name');
             $table->string('model');
@@ -24,6 +25,8 @@ class CreateVehiclesTable extends Migration
             $table->string('color');
             $table->integer('cylinder');
             $table->double('price',15,2);
+            $table->double('otr',15,2)->default(0)->nullable();
+            $table->text('image')->nullable();
             // $table->timestamps();
         });
     }

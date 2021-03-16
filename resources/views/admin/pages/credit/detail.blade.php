@@ -19,7 +19,7 @@
 	        				<td class="text-center">{!!convert_master_to_object_2(config('master.installment_status'))[$v->status]->value['name']!!}</td>
 	        				<td>{{$v->paid_date}}</td>
 	        				<td>
-	        					<button class="btn btn-success btn-paid" data-id="{{$v->id}}" {{$v->status != config('master.installment_status.open.id')?'disabled':''}}>Bayar</button>
+	        					<button class="btn btn-{{$v->status != config('master.installment_status.open.id')?'danger':'success'}} btn-paid" data-id="{{$v->id}}" {{$v->status != config('master.installment_status.open.id')?'disabled':''}}>{{$v->status != config('master.installment_status.open.id')?'Terbayar':'Bayar'}}</button>
 	        				</td>
 	        			</tr>
 	        		@endforeach

@@ -114,11 +114,11 @@ class CreditController extends Controller
 
                 if($credit->interest_type == config('master.interest_type.sliding_rate.id')){
 
-                    $bunga = ($saldo_akhir * ($credit->interest/100) / $credit->tenor);
+                    $bunga = ($sisa * ($credit->interest/100) / $credit->tenor);
                     $saldo_akhir -= $pokok;
 
                 }else{
-                    $bunga = ($credit->price * ($credit->interest/100) / $credit->tenor);
+                    $bunga = ($sisa * ($credit->interest/100) / $credit->tenor);
                 }
 
                 $total_angsuran = $pokok + $bunga; 
