@@ -20,6 +20,7 @@ class VehicleSeeder extends Seeder
         	'code' => 'OIHOUBOP56B',
         	'name' => 'Supra X 125D',
         	'model' => 'IYUO7777',
+			'price' => 17000000,
         	'year' => 2018,
         	'color' => 'GREEN',
         	'cylinder' => 125
@@ -34,6 +35,7 @@ class VehicleSeeder extends Seeder
         	'name' => 'MIO SOUL G',
         	'model' => '0987NI867NUI',
         	'year' => 2015,
+			'price' => 18500000,
         	'color' => 'YELLOW',
         	'cylinder' => 110
         ];

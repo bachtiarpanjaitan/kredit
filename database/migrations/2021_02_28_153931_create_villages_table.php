@@ -15,7 +15,7 @@ class CreateVillagesTable extends Migration
     {
         Schema::create('villages', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('code',15)->index();
+            $table->bigInteger('code')->index();
             $table->integer('district_code')->index();
             $table->string('name');
             // $table->timestamps();

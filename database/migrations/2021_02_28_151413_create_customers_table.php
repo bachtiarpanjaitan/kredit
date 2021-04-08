@@ -22,7 +22,7 @@ class CreateCustomersTable extends Migration
             $table->string('no_kk');
             $table->string('no_ktp')->unique();
             $table->text('address')->nullable();
-            $table->bigInteger('village_id',15)->nullable();
+            $table->bigInteger('village_id')->nullable();
             $table->integer('district_id')->nullable();
             $table->tinyInteger('regency_id')->nullable();
             $table->tinyInteger('province_id')->nullable();

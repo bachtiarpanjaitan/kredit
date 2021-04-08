@@ -61,6 +61,7 @@ Route::group([
 ], function (Router $router) {
   $controller = "CreditController@";
   $router->get('info',$controller.'info')->name('info');
+  $router->get('paid',$controller.'paid')->name('paid');
 });
 
 

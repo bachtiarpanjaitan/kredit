@@ -19,6 +19,7 @@ class CreateCreditDetailsTable extends Migration
             $table->integer('installment')->default(1);
             $table->double('installment_value',15,2)->default(0);
             $table->tinyInteger('status')->default(1);
+            $table->date('paid_date')->nullable();
             $table->timestamps();
         });
     }
