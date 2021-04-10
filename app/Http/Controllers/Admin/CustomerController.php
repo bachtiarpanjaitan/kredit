@@ -10,6 +10,7 @@ use App\Models\Regency;
 use App\Models\District;
 use App\Models\Village;
 use Validator;
+use App\User;
 
 class CustomerController extends Controller
 {
@@ -109,16 +110,29 @@ class CustomerController extends Controller
             $v->birth_date = $data['birth_date'];
             $v->profession = $data['profession'];
 
-           if( $v->save()){
+            $user = User::find($v->user_id);
+
+            if(empty($user)) return redirect()->back();
+
+            $user->email = $v->email;
+            $user->name = $v->first_name .' '.$v->last_name;
+
+           if($v->save() && $user->save()){
                 return redirect()->route('admin.customer.list');
            }else return redirect()->back();
 
-
-
         }else{
+
+            $user = new User();
+            $user->name = $data['first_name'].' '.$data['last_name'];
+            $user->email = $data['email'];
+            $user->password = bcrypt(strtolower($data['first_name'].'1234'));
+            $user->save();
+
             // Tambah Data baru
             unset($data['id']);
             unset($data['_token']);
+            $data['user_id'] = $user->id;
             Customer::insert($data);
             return redirect()->route('admin.customer.list');
         }

@@ -114,7 +114,7 @@ class CreditController extends Controller
 
                 if($credit->interest_type == config('master.interest_type.sliding_rate.id')){
 
-                    $bunga = ($sisa * ($credit->interest/100) / $credit->tenor);
+                    $bunga = ($saldo_akhir * ($credit->interest/100) / $credit->tenor);
                     $saldo_akhir -= $pokok;
 
                 }else{
@@ -189,6 +189,21 @@ class CreditController extends Controller
         if(empty($credit_id) || empty($id)) return json_return_data(null,null,'Data tidak lengkap',500);
 
         $detail = CD::findOrFail($id);
+
+        if($detail){
+            $credit = Credit::findOrFail($detail->credit_id);
+            if(!empty($credit)){
+                $tenor = $credit->tenor;
+                if(CD::where('credit_id',$credit->id)->where('status',config('master.credit_status.open.id'))->count() >= 0){
+                    $credit->status = config('master.credit_status.running.id');
+                    
+                }elseif(CD::where('credit_id',$credit->id)->where('status',config('master.credit_status.running.id'))->count() >= $tenor ){
+                    $credit->status = config('master.credit_status.done.id');
+                }
+                $credit->save();
+            }
+            
+        }
 
         if(empty($detail)) return json_return_data(null,null,'Data tidak tersedia',500);
 

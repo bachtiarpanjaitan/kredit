@@ -16,8 +16,7 @@ class CreditController extends Controller
 
     public function info()
     {
-
-    	$credits = Credit::with(['details','vehicle'])->where('customer_id',Auth::user()->id)->get();
+    	$credits = Credit::with(['details','vehicle'])->where('customer_id',Auth::user()->customer()->first()->id)->get();
     	return view('auth.pages.credit.info',compact('credits'));
     }
 }

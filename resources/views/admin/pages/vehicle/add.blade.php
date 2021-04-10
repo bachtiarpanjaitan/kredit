@@ -7,7 +7,7 @@
 
 @section('content')
 	<div class="card">
-		<form action="{{route('admin.vehicle.save')}}" method="POST">
+		<form action="{{route('admin.vehicle.save')}}" enctype="multipart/form-data" method="POST">
 			@csrf
 			<input type="hidden" name="id" value="{{$vehicle?$vehicle->id:''}}">
 			<div class="row card-body col-md-12">
@@ -115,6 +115,10 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
+					</div>
+					<div class="form-group">
+						<label for="">Ukuran Silinder (CC)</label>
+						<input type="file" name="image" id="" class="form-control">
 					</div>
 				</div>
 				<div class="col-md-12">

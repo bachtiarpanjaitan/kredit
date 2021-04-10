@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('auth.layout.main')
 @php
 	$otr = $vehicle->otr == 0?$vehicle->price + $vehicle->otr:config('master.default_otr');
 @endphp
@@ -12,7 +12,7 @@
 		<tbody>
 			<tr>
 				<td class="font-weight-bold">Gambar</td>
-				<td><img class="rounded mx-auto d-block" src="{{asset('img/vehicles/'.$vehicle->image)}}" alt=""></td>
+				<td><img class="rounded mx-auto d-block" src="{{ Storage::url('img/vehicles/') }}{{$vehicle->image}}" alt=""></td>
 			</tr>
 			<tr>
 				<td class="font-weight-bold">Nama</td>

@@ -54,6 +54,7 @@ class VehicleController extends Controller
             'color' => 'required',
             'cylinder' => 'required|integer',
             'price' => 'required|integer',
+            'image' => 'required'
         ]);
 
         if ($validations->fails()) {
@@ -61,6 +62,10 @@ class VehicleController extends Controller
                         ->withErrors($validations)
                         ->withInput();
         }
+
+        $image = $request->file('image');
+        $file_name = $image->getClientOriginalName();
+        $image->storeAs('public/img/vehicles',$file_name);
 
         if(!empty($data['id']))
         {
@@ -78,6 +83,7 @@ class VehicleController extends Controller
             $v->color = $data['color'];
             $v->cylinder = $data['cylinder'];
             $v->price = $data['price'];
+            $v->image = $file_name;
 
            if( $v->save()){
                 return redirect()->route('admin.vehicle.list');
@@ -89,6 +95,9 @@ class VehicleController extends Controller
             // Tambah Data baru
             unset($data['id']);
             unset($data['_token']);
+            unset($data['image']);
+
+            $data['image'] = $file_name;
             Vehicle::insert($data);
             return redirect()->route('admin.vehicle.list');
         }

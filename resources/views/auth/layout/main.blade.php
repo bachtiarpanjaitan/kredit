@@ -58,12 +58,18 @@
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li><a href="{{route('dashboard')}}">Beranda</a></li>
-          <li><a href="{{route('vehicle.list')}}">Sepeda Motor</a></li>
+          @if(Auth::user())
+            <li><a href="{{route('dashboard')}}">Beranda</a></li>
+            <li><a href="{{route('vehicle.list')}}">Sepeda Motor</a></li>
+          @else
+            <li><a href="{{url('/')}}">Beranda</a></li>
+            <li><a href="{{url('/produk')}}">Sepeda Motor</a></li>
+          @endif
+          @if(Auth::user())
           <li><a href="{{route('credit.info')}}">Angsuran Anda</a></li>
-          <li class="drop-down"><a href="">Lainnya</a>
+          <li class="drop-down"><a href="# ">Lainnya</a>
             <ul>
-              <li><a href="#">Profil Anda</a></li>
+              <li><a href="{{route('profile.info')}}">Profil Anda</a></li>
               <li class="nav-item">
               <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link">
                   <i class="nav-icon fas fa-lock"></i>
@@ -75,6 +81,7 @@
             </li>
             </ul>
           </li>
+          @endif
 
         </ul>
       </nav><!-- .nav-menu -->

@@ -64,5 +64,14 @@ Route::group([
   $router->get('paid',$controller.'paid')->name('paid');
 });
 
+Route::group([
+  'as' => 'profile.',
+  'prefix' => 'profile'
+], function (Router $router) {
+  $controller = "ProfileController@";
+  $router->get('',$controller.'index')->name('info');
+  $router->post('',$controller.'save')->name('save');
+});
+
 
 
