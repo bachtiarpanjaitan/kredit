@@ -2,7 +2,7 @@
 
 @section('content')
 	<div class="card">
-		<form action="{{route('admin.customer.save')}}" method="POST">
+		<form action="{{route('admin.customer.save')}}" enctype="multipart/form-data" method="POST">
 			@csrf
 			<input type="hidden" name="id" value="{{$customer?$customer->id:''}}">
 			<div class="row card-body col-md-12">
@@ -170,6 +170,47 @@
 	                            <strong>{{ $message }}</strong>
 	                        </span>
 	                    @enderror
+					</div>
+					<div class="form-group">
+						<label for="">NPWP</label>
+						<input type="number" name="npwp" id="npwp" class="form-control" value="{{$customer?$customer->npwp:''}}">
+						@error('npwp')
+                            <span class="small text-danger">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+					</div>
+					<div class="form-group">
+						<label for="">Nama Bank</label>
+						<select required class="form-control select2" name="bank_id" id="bank_id">
+							<option value="">Pilih Bank</option>
+							@if($banks)
+								{!! combobox($banks,'id','name', $customer?$customer->bank_id:'')!!}
+							@endif
+						</select>
+						@error('bank_id')
+	                        <span class="small text-danger">
+	                            <strong>{{ $message }}</strong>
+	                        </span>
+	                    @enderror
+					</div>
+					<div class="form-group">
+						<label for="">No.Rekening</label>
+						<input type="number" required name="rekening" id="rekening" class="form-control" value="{{$customer?$customer->rekening:''}}">
+						@error('rekening')
+                            <span class="small text-danger">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+					</div>
+					<div class="form-group">
+						<label for="">Slip Gaji</label>
+						<input type="file" required name="slip_gaji" id="" class="form-control">
+						@error('slip_gaji')
+                            <span class="small text-danger">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
 					</div>
 				</div>
 				<div class="col-md-12">

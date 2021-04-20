@@ -117,7 +117,7 @@
                         @enderror
 					</div>
 					<div class="form-group">
-						<label for="">Ukuran Silinder (CC)</label>
+						<label for="">Gambar</label>
 						<input type="file" name="image" id="" class="form-control">
 					</div>
 				</div>

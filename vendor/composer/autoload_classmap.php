@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'AdminSeeder' => $baseDir . '/database/seeds/AdminSeeder.php',
     'App\\Admin' => $baseDir . '/app/Admin.php',
+    'App\\Bank' => $baseDir . '/app/Bank.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\AdminAuth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/AdminAuth/ForgotPasswordController.php',
@@ -30,6 +31,7 @@ return array(
     'App\\Http\\Controllers\\CreditController' => $baseDir . '/app/Http/Controllers/CreditController.php',
     'App\\Http\\Controllers\\GuestController' => $baseDir . '/app/Http/Controllers/GuestController.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
+    'App\\Http\\Controllers\\ProfileController' => $baseDir . '/app/Http/Controllers/ProfileController.php',
     'App\\Http\\Controllers\\VehicleController' => $baseDir . '/app/Http/Controllers/VehicleController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
@@ -57,6 +59,7 @@ return array(
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
     'App\\User' => $baseDir . '/app/User.php',
     'Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
+    'BankSeeder' => $baseDir . '/database/seeds/BankSeeder.php',
     'Carbon\\Carbon' => $vendorDir . '/nesbot/carbon/src/Carbon/Carbon.php',
     'Carbon\\CarbonConverterInterface' => $vendorDir . '/nesbot/carbon/src/Carbon/CarbonConverterInterface.php',
     'Carbon\\CarbonImmutable' => $vendorDir . '/nesbot/carbon/src/Carbon/CarbonImmutable.php',

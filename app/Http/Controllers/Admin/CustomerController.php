@@ -11,6 +11,7 @@ use App\Models\District;
 use App\Models\Village;
 use Validator;
 use App\User;
+use App\Models\Bank;
 
 class CustomerController extends Controller
 {
@@ -29,9 +30,10 @@ class CustomerController extends Controller
         $regencies = null;
         $districts = null;
         $villages = null;
+        $banks = Bank::all();
         $provinces = Province::all();
 
-        return view('admin.pages.customer.add',compact('page','provinces','customer','regencies','districts','villages'));
+        return view('admin.pages.customer.add',compact('banks','page','provinces','customer','regencies','districts','villages'));
     }
 
     public function edit(Request $request){
@@ -52,13 +54,14 @@ class CustomerController extends Controller
         $regencies = Regency::where('province_code',$customer->province_id)->get();
         $districts = District::where('regency_code',$customer->regency_id)->get();
         $villages = Village::where('district_code', $customer->district_id)->get();
+        $banks = Bank::all();
 
         // dd($regencies);
 
-
+        // dd($customer);
         if(empty($customer)) return redirect()->back();
 
-        return view('admin.pages.customer.add', compact('page','provinces','customer','regencies','districts','villages'));
+        return view('admin.pages.customer.add', compact('banks','page','provinces','customer','regencies','districts','villages'));
     }
 
     public function save(Request $request){
@@ -78,7 +81,10 @@ class CustomerController extends Controller
             'province_id' => 'required|integer',
             'email' => 'required|email',
             'birth_date' => 'required|date',
-            'birth_place' => 'required'
+            'birth_place' => 'required',
+            'npwp' => 'required',
+            'bank_id' => 'required',
+            'slip_gaji' => 'required'
         ]);
 
         if ($validations->fails()) {
@@ -86,6 +92,10 @@ class CustomerController extends Controller
                         ->withErrors($validations)
                         ->withInput();
         }
+
+        $image = $request->file('slip_gaji');
+        $file_name = $image->getClientOriginalName();
+        $image->storeAs('public/img/slip',$file_name);
 
         if(!empty($data['id']))
         {
@@ -109,9 +119,12 @@ class CustomerController extends Controller
             $v->birth_place = $data['birth_place'];
             $v->birth_date = $data['birth_date'];
             $v->profession = $data['profession'];
+            $v->npwp = $data['npwp'];
+            $v->bank_id = $data['bank_id'];
+            $v->rekening = $data['rekening'];
+            $v->slip_gaji = $file_name;
 
             $user = User::find($v->user_id);
-
             if(empty($user)) return redirect()->back();
 
             $user->email = $v->email;
@@ -119,7 +132,9 @@ class CustomerController extends Controller
 
            if($v->save() && $user->save()){
                 return redirect()->route('admin.customer.list');
-           }else return redirect()->back();
+           }else {
+                return redirect()->back();
+           }
 
         }else{
 
@@ -144,7 +159,7 @@ class CustomerController extends Controller
     		'title' => 'Daftar'
     	];
 
-    	$customers = Customer::all();
+    	$customers = Customer::with('user')->has('user')->get();
 
     	return view('admin.pages.customer.list',compact('page','customers'));
     }

@@ -16,6 +16,7 @@ class CreditController extends Controller
 
     public function info()
     {
+        if(empty(Auth::user()->customer()->first())) return redirect()->back();
     	$credits = Credit::with(['details','vehicle'])->where('customer_id',Auth::user()->customer()->first()->id)->get();
     	return view('auth.pages.credit.info',compact('credits'));
     }
