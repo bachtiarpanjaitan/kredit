@@ -146,6 +146,12 @@
           <li class="nav-header">LAIN-LAIN</li>
           <li class="nav-item">
             <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-file"></i>
+              <p>Laporan</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>Profil</p>
             </a>

@@ -10,7 +10,8 @@
 			            	<img src="{{ Storage::url('img/vehicles/') }}{{$v->image}}" alt="" class="" width="240px" height="150px">
 			              <div class="mt-2">
 			              	<h4 class="title text-center"><a href="">{!!convert_master_to_object_2(config('master.brand'))[$v->brand_id]->value['name']!!} {{$v->name}}</a></h4>
-			              </div><br>
+							<p class="text-center">Rp.{{$v->price}}</p>
+						</div><br>
 			              <p class="description">
 			              	<a href="{{route('product.detail',$v->id)}}"><button class="btn btn-block btn-primary">Detail</button></a>
 			              </p>
