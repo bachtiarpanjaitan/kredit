@@ -12,7 +12,7 @@
 		<tbody>
 			<tr>
 				<td class="font-weight-bold">Gambar</td>
-				<td><img class="rounded mx-auto d-block" src="{{ Storage::url('img/vehicles/') }}{{$vehicle->image}}" alt=""></td>
+				<td><img class="rounded mx-auto d-block" width="500px" height="350px" src="{{ Storage::url('img/vehicles/') }}{{$vehicle->image}}" alt=""></td>
 			</tr>
 			<tr>
 				<td class="font-weight-bold">Nama</td>

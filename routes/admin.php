@@ -79,5 +79,15 @@ Route::group([
     $router->post('paid',$controller.'paid')->name('paid');
 });
 
+Route::group([
+    'as' => 'report.',
+    'prefix' => 'report'
+], function (Router $router) {
+    $controller = "Admin\ReportController@";
+    $router->get('list',$controller.'list')->name('list');
+    $router->get('unit_sales_report',$controller.'unitsales')->name('unit_sales');
+    $router->get('credit_detail_report',$controller.'creditdetails')->name('credit_details');
+});
+
 
 
