@@ -37,6 +37,7 @@
                     <th width="10px">#</th>
                     <th>Nama Pelanggan</th>
                     <th>Kendaraan</th>
+                    <th width="20px">Angsuran Ke</th>
                     <th class="text-right">Jumlah Dibayar (IDR)</th>
                     <th>Tanggal</th>
                 </thead>
@@ -52,6 +53,7 @@
                             <td>{{$k+1}}</td>
                             <td>{{$item->customer_first_name}} {{$item->customer_last_name}}</td>
                             <td>{{$item->vehicle_name}}</td>
+                            <td>{{$item->angsuran_ke}}</td>
                             <td class="text-right">{{number_format($item->value)}}</td>
                             <td>{{$item->date}}</td>
                         </tr>

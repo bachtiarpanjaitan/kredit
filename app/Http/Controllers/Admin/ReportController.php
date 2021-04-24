@@ -70,6 +70,7 @@ class ReportController extends Controller
                     'credit_details.installment_value as value',
                     'credit_details.paid_date as date',
                     'vehicles.name as vehicle_name',
+                    'credit_details.installment as angsuran_ke',
                     'customers.last_name as customer_last_name')
                     
                     ->join('customers','customers.id','=','credits.customer_id')
