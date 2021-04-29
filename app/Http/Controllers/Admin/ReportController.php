@@ -52,6 +52,31 @@ class ReportController extends Controller
         return view('admin.pages.report.unit_sales', compact('page','sales'));
     }
 
+    public function unityearsales(Request $request){
+
+        
+        $year = date('Y');
+        $page = [
+    		'module' => 'Laporan',
+    		'title' => 'Penjualan Unit Tahunan'
+    	];
+        $sales = \DB::table('credits')
+                 ->select(
+                    'vehicle_id', 
+                    'vehicles.name as name',
+                    // 'created_at as date',
+                    \DB::raw('sum(credits.down_payment) as dp_total'),
+                    \DB::raw('count(*) as vehicle_total'
+                 ))
+                 ->join('vehicles','vehicles.id','=','credits.vehicle_id')
+                 ->whereYear('credits.created_at', '=', date('Y'))
+                 ->groupBy('vehicle_id')
+                 ->get();
+        
+                //  dd($sales);
+        return view('admin.pages.report.unit_sales_year', compact('page','sales'));
+    }
+
     public function creditdetails(Request $request)
     {
          
@@ -81,6 +106,34 @@ class ReportController extends Controller
                     ->get();
         // dd(date('Y'));
         return view('admin.pages.report.credit_detail', compact('page','details'));
+
+    }
+
+    public function credityeardetails(Request $request)
+    {
+         
+        $month = date('Y');
+        $page = [
+    		'module' => 'Laporan',
+    		'title' => 'Detail Penerimaan Kredit Tahunan'
+    	];
+
+        $details = \DB::table('credits')
+                    ->select(
+                    'customers.first_name as customer_first_name',
+                    'credit_details.installment_value as value',
+                    'credit_details.paid_date as date',
+                    'vehicles.name as vehicle_name',
+                    'credit_details.installment as angsuran_ke',
+                    'customers.last_name as customer_last_name')
+                    
+                    ->join('customers','customers.id','=','credits.customer_id')
+                    ->join('vehicles','vehicles.id','=','credits.vehicle_id')
+                    ->join('credit_details','credit_details.id','=','credits.id')
+                    ->whereYear('credit_details.paid_date', '=', date('Y'))
+                    ->get();
+        // dd(date('Y'));
+        return view('admin.pages.report.credit_detail_year', compact('page','details'));
 
     }
 }

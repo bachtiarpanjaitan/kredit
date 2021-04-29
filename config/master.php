@@ -86,5 +86,6 @@ return [
 	'tenor' => [12,18,24,30,36],
 	'downpayment' => [1000000,2500000,3500000,4000000,5500000,6000000],
 	'default_otr' => 2000000,
-	'default_interest' => 5
+	'default_interest' => 5,
+	'months' => ['Januari', 'Februari',' Maret','April', 'Mei','Juni','Juli','Agustus','September','Oktober','November','Desember']
 ];

@@ -15,9 +15,20 @@
                     <td><a href="{{route('admin.report.unit_sales')}}"><button class="btn btn-success">Lihat</button></a></td>
                 </tr>
                 <tr>
+                    <td>Laporan Penjualan Tahunan</td>
+                    <td>Laporan penjualan sepeda motor pertahun</td>
+                    <td><a href="{{route('admin.report.unit_year_sales')}}"><button class="btn btn-success">Lihat</button></a></td>
+                </tr>
+                <tr>
                     <td>Laporan Penerimaan Angsuran</td>
-                    <td>Laopran Penerimaan Angsuran perbulan</td>
+                    <td>Laporan Penerimaan Angsuran perbulan</td>
                     <td><a href="{{route('admin.report.credit_details')}}"><button class="btn btn-success">Lihat</button></a></td>
+                </tr>
+               
+                <tr>
+                    <td>Laporan Penerimaan Angsuran Tahunan</td>
+                    <td>Laporan Penerimaan Angsuran pertahun</td>
+                    <td><a href="{{route('admin.report.credit_year_details')}}"><button class="btn btn-success">Lihat</button></a></td>
                 </tr>
             </tbody>
         </table>

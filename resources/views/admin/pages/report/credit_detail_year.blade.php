@@ -1,37 +1,11 @@
 @extends('admin.layout.main')
 
-@section('title', 'Laporan Penerimaan Angsuran Bulan '.config('master.months')[Request::get('month')?Request::get('month')-1:0])
+@section('title', 'Laporan Penerimaan Angsuran Tahun '.date('Y'))
 
 @section('content')
     <div class="card mt-2">
         <div class="row card-body">
             <div class="table-responsive">
-            <form action="{{route('admin.report.credit_details')}}" method="GET">
-                <div class="row">
-               
-                    @csrf
-                    <div class="col-3">
-                        <div class="form-group">
-                            <select name="month" class="form-control" id="">
-                                @foreach(config('master.months') as $k => $i)
-                                    @if (Request::get('month') == $k+1)
-                                        <option selected value="{{$k+1}}">{{$i}} {{date('Y')}}</option>
-                                    @else
-                                        <option value="{{$k+1}}">{{$i}} {{date('Y')}}</option>
-                                    @endif
-                                    
-                                @endforeach
-                            </select>
-                        </div>
-                        
-                    </div>
-                    <div class="col-3">
-                        <div class="form-group">
-                            <button class="btn btn-primary">Cari</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
             <table id="data" class="table table-sm table-bordered table-hover">
                 <thead>
                     <th width="10px">#</th>

@@ -87,6 +87,8 @@ Route::group([
     $router->get('list',$controller.'list')->name('list');
     $router->get('unit_sales_report',$controller.'unitsales')->name('unit_sales');
     $router->get('credit_detail_report',$controller.'creditdetails')->name('credit_details');
+    $router->get('unit_sales_year_report',$controller.'unityearsales')->name('unit_year_sales');
+    $router->get('credit_detail_year_report',$controller.'credityeardetails')->name('credit_year_details');
 });
 
 
